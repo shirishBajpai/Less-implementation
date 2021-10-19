@@ -1,0 +1,88 @@
+@import "./index2.less";   //import directives
+
+@main-heading: 40px;   //variables
+@img-width: 0.9;
+
+// colors
+@black: ~"#000000";    //Escaping
+@black-charcoal: #36454F;
+@white: #FFFFFF;
+
+.header {
+  &:extend(.text);      //less-extend
+  padding: 40px;
+  text-align: center;
+  background: @black-charcoal;
+  color: @white;
+}
+
+.text{
+  font-family: monospace;
+}
+
+.text2{
+  .text();         //less-mixin
+}
+
+.header {
+  h1 {
+    font-size: @main-heading + 10px; //operation
+  }
+  @media screen {
+    color: @white;
+    @media (max-width: 720px) {       //Nested At-Rules and Bubbling
+       color: green; 
+    }
+ }
+}
+
+.navbar {
+  overflow: hidden;
+  background-color: @black;
+}
+
+.navbar {
+  a {               //nested directives
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+    &:hover{                        //parent selector
+      background-color: #ddd;
+      color: black;
+    }
+  }
+}
+
+.main {   
+  background-color: white;
+  padding: 20px;
+}
+
+.border(@width; @style; @color) {
+  border: @width @style @color;      //parameteric mixins
+}
+
+.fakeimg {
+  .border(2px; dashed; black);
+  background-color: #aaa;
+  width: percentage(@img-width);   //Functions
+  padding: 20px;
+}
+
+// .footer(@count) when (@count > 0) {        //loop
+//   .footer((@count - 1));
+//   width: (25px * @count);
+// }
+
+// div {
+//   .footer(2);
+// }
+
+.footer {
+  padding: 20px;
+  text-align: center;
+  background: #ddd;
+}
